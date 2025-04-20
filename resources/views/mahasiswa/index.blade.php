@@ -80,7 +80,7 @@
                 }]
             });
 
-            $('#-d_mahasiswa').on('change', function() {
+            $('#id_mahasiswa').on('change', function() {
                 dataMahasiswa.ajax.reload();
             });
         });
