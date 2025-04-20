@@ -5,7 +5,7 @@
         <div class="card-header d-flex justify-content-between align-items-center">
             <h3 class="card-title">{{ $page->title }}</h3>
             <div class="card-tools">
-                <button onclick="modalAction('{{ url('mahasiswa/create') }}')" class="btn btn-sm btn-success mt-1">
+                <button onclick="modalAction('{{ url('kelas/create') }}')" class="btn btn-sm btn-success mt-1">
                     Tambah Data
                 </button>
             </div>
@@ -17,12 +17,12 @@
             @if (session('error'))
                 <div class="alert alert-danger">{{ session('error') }}</div>
             @endif
-            <table class="table table-bordered table-striped table-hover table-sm" id="table_mahasiswa">
+            <table class="table table-bordered table-striped table-hover table-sm" id="table_kelas">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>NIM</th>
-                        <th>Nama Mahasiswa</th>
+                        <th>Nama Kelas</th>
+                        <th>Nama Dosen</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -45,15 +45,15 @@
             });
         }
         $(document).ready(function() {
-            var dataMahasiswa = $('#table_mahasiswa').DataTable({
+            var dataKelas = $('#table_kelas').DataTable({
                 // serverSide: true, jika ingin menggunakan server side processing
                 serverSide: true,
                 ajax: {
-                    "url": "{{ url('mahasiswa/list') }}",
+                    "url": "{{ url('kelas/list') }}",
                     "dataType": "json",
                     "type": "POST",
                     "data": function(d) {
-                        d.mahasiswa_id = $('#mahasiswa_id').val();
+                        d.kelas_id = $('#kelas_id').val();
                     }
                 },
                 columns: [{
@@ -63,7 +63,7 @@
                     orderable: false,
                     searchable: false
                 }, {
-                    data: "nim",
+                    data: "nama_kelas",
                     className: "",
                     orderable: true,
                     searchable: true
@@ -80,8 +80,8 @@
                 }]
             });
 
-            $('#-d_mahasiswa').on('change', function() {
-                dataMahasiswa.ajax.reload();
+            $('#id_kelas').on('change', function() {
+                dataKelas.ajax.reload();
             });
         });
     </script>

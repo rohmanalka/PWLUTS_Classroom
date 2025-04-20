@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KelasControler;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\MahasiswaController;
@@ -27,4 +28,11 @@ Route::group(['prefix' => 'mahasiswa'], function () {
     Route::get('/{id}/delete', [MahasiswaController::class, 'confirm']);
     Route::delete('/{id}/delete', [MahasiswaController::class, 'delete']);
     Route::get('/{id}/show', [MahasiswaController::class, 'show']);
+});
+
+Route::group(['prefix' => 'kelas'], function () {
+    Route::get('/', [KelasControler::class, 'index']);
+    Route::post('/list', [KelasControler::class, 'list']);
+    Route::get('/create', [KelasControler::class, 'create']);
+    Route::post('/ajax', [KelasControler::class, 'store']);    
 });
