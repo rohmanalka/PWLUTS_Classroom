@@ -33,7 +33,7 @@
                     </span>
                     <h4 class="text-section">MENU</h4>
                 </li>
-                <li class="nav-item {{ $activeMenu == 'datamahasiswa' ? 'active' : '' }}">
+                <li class="nav-item {{ $activeMenu == 'mahasiswa' ? 'active' : '' }}">
                     <a href="{{ url('/mahasiswa') }}" class="nav-link">
                         <i class="fas fa-portrait"></i>
                         <p>Data Mahasiswa</p>
