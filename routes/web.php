@@ -35,4 +35,9 @@ Route::group(['prefix' => 'kelas'], function () {
     Route::post('/list', [KelasControler::class, 'list']);
     Route::get('/create', [KelasControler::class, 'create']);
     Route::post('/ajax', [KelasControler::class, 'store']);    
+    Route::get('/{id}/edit', [KelasControler::class, 'edit']);
+    Route::put('/{id}/update', [KelasControler::class, 'update']);
+    Route::get('/{id}/delete', [KelasControler::class, 'confirm']);
+    Route::delete('/{id}/delete', [KelasControler::class, 'delete']);
+    Route::get('/{id}/show', [KelasControler::class, 'show']);
 });

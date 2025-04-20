@@ -23,6 +23,7 @@
                         <th>ID</th>
                         <th>Nama Kelas</th>
                         <th>Nama Dosen</th>
+                        <th>Jumlah Mahasiswa</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -44,6 +45,22 @@
                 $('#myModal').modal('show');
             });
         }
+        $(document).on('click', '.lihat-mahasiswa', function(e) {
+            e.preventDefault();
+            let daftar = $(this).data('mahasiswa');
+
+            swal({
+                title: "Daftar Mahasiswa",
+                text: daftar.split(', ').join('\n'),
+                icon: "info",
+                buttons: {
+                    confirm: {
+                        text: "Tutup",
+                        className: "btn btn-primary"
+                    }
+                }
+            });
+        });
         $(document).ready(function() {
             var dataKelas = $('#table_kelas').DataTable({
                 // serverSide: true, jika ingin menggunakan server side processing
@@ -68,7 +85,12 @@
                     orderable: true,
                     searchable: true
                 }, {
-                    data: "nama",
+                    data: "dosen.nama",
+                    className: "",
+                    orderable: true,
+                    searchable: true
+                }, {
+                    data: "jumlah_mahasiswa",
                     className: "",
                     orderable: true,
                     searchable: true
