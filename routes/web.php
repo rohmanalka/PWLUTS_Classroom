@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DosenController;
 use App\Http\Controllers\KelasControler;
+use App\Http\Controllers\DosenController;
+use App\Http\Controllers\TugasController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\MahasiswaController;
 
@@ -24,7 +25,7 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/', [WelcomeController::class, 'index'])->middleware('auth:mahasiswa,dosen');
 
-Route::middleware(['auth:mahasiswa'])->prefix('mahasiswa')->group(function () {
+Route::middleware(['auth:dosen'])->prefix('mahasiswa')->group(function () {
     Route::get('/', [MahasiswaController::class, 'index']);
     Route::post('/list', [MahasiswaController::class, 'list']);
     Route::get('/create', [MahasiswaController::class, 'create']);
@@ -58,5 +59,14 @@ Route::middleware(['auth:dosen'])->prefix('kelas')->group(function () {
     Route::get('/{id}/delete', [KelasControler::class, 'confirm']);
     Route::delete('/{id}/delete', [KelasControler::class, 'delete']);
     Route::get('/{id}/show', [KelasControler::class, 'show']);
+});
+
+Route::middleware(['auth:dosen'])->prefix('tugas')->group(function () {
+    Route::get('/', [TugasController::class, 'index']);
+    Route::post('/list', [TugasController::class, 'list']);
+    Route::get('/create', [TugasController::class, 'create']);
+    Route::post('/ajax', [TugasController::class, 'store']);  
+    Route::get('/{id}/edit', [TugasController::class, 'edit']);
+    Route::put('/{id}/update', [TugasController::class, 'update']);
 });
 
