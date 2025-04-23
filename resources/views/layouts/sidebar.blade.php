@@ -36,12 +36,6 @@
 
                 {{-- Untuk Mahasiswa --}}
                 @if (session('mahasiswa'))
-                    <li class="nav-item {{ $activeMenu == 'mahasiswa' ? 'active' : '' }}">
-                        <a href="{{ url('/mahasiswa') }}" class="nav-link">
-                            <i class="fas fa-portrait"></i>
-                            <p>Data Mahasiswa</p>
-                        </a>
-                    </li>
                     <li class="nav-item {{ $activeMenu == 'tugasmhs' ? 'active' : '' }}">
                         <a href="{{ url('/tugasmhs') }}" class="nav-link">
                             <i class="fas fa-book"></i>
@@ -56,6 +50,12 @@
                         <a href="{{ url('/dosen') }}" class="nav-link">
                             <i class="fas fa-portrait"></i>
                             <p>Data Dosen</p>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ $activeMenu == 'mahasiswa' ? 'active' : '' }}">
+                        <a href="{{ url('/mahasiswa') }}" class="nav-link">
+                            <i class="fas fa-portrait"></i>
+                            <p>Data Mahasiswa</p>
                         </a>
                     </li>
                     <li class="nav-item {{ $activeMenu == 'kelas' ? 'active' : '' }}">
