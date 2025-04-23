@@ -8,7 +8,7 @@
         <div class="card-tools"></div>
     </div>
     <div class="card-body">
-        Selamat Datang di Web CRUD Karyawan UTS PWL
+        Selamat Datang Dosen
     </div>
 </div>
 @endsection

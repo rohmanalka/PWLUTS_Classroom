@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'mahasiswa',
+        'passwords' => 'mahasiswa',
     ],
 
     /*
@@ -36,9 +36,14 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'dosen' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'dosen',
+        ],
+
+        'mahasiswa' => [
+            'driver' => 'session',
+            'provider' => 'mahasiswa',
         ],
     ],
 
@@ -60,9 +65,14 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'dosen' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\DosenModel::class,
+        ],
+
+        'mahasiswa' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\MahasiswaModel::class,
         ],
 
         // 'users' => [
@@ -91,8 +101,15 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'dosen' => [
+            'provider' => 'dosen',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'mahasiswa' => [
+            'provider' => 'mahasiswa',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
