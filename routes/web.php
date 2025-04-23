@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\KelasControler;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DosenController;
+use App\Http\Controllers\KelasControler;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\MahasiswaController;
 
@@ -16,9 +18,13 @@ use App\Http\Controllers\MahasiswaController;
 |
 */
 
-Route::get('/', [WelcomeController::class, 'index']);
+Route::get('login', [AuthController::class, 'login'])->name('login');
+Route::post('login', [AuthController::class, 'postlogin']);
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::group(['prefix' => 'mahasiswa'], function () {
+Route::get('/', [WelcomeController::class, 'index'])->middleware('auth:mahasiswa,dosen');
+
+Route::middleware(['auth:mahasiswa'])->prefix('mahasiswa')->group(function () {
     Route::get('/', [MahasiswaController::class, 'index']);
     Route::post('/list', [MahasiswaController::class, 'list']);
     Route::get('/create', [MahasiswaController::class, 'create']);
@@ -30,14 +36,27 @@ Route::group(['prefix' => 'mahasiswa'], function () {
     Route::get('/{id}/show', [MahasiswaController::class, 'show']);
 });
 
-Route::group(['prefix' => 'kelas'], function () {
+Route::middleware(['auth:dosen'])->prefix('dosen')->group(function () {
+    Route::get('/', [DosenController::class, 'index']);
+    Route::post('/list', [DosenController::class, 'list']);
+    Route::get('/create', [DosenController::class, 'create']);
+    Route::post('/ajax', [DosenController::class, 'store']);
+    Route::get('/{id}/edit', [DosenController::class, 'edit']);
+    Route::put('/{id}/update', [DosenController::class, 'update']);
+    Route::get('/{id}/delete', [DosenController::class, 'confirm']);
+    Route::delete('/{id}/delete', [DosenController::class, 'delete']);
+    Route::get('/{id}/show', [DosenController::class, 'show']);
+});
+
+Route::middleware(['auth:dosen'])->prefix('kelas')->group(function () {
     Route::get('/', [KelasControler::class, 'index']);
     Route::post('/list', [KelasControler::class, 'list']);
     Route::get('/create', [KelasControler::class, 'create']);
-    Route::post('/ajax', [KelasControler::class, 'store']);    
+    Route::post('/ajax', [KelasControler::class, 'store']);
     Route::get('/{id}/edit', [KelasControler::class, 'edit']);
     Route::put('/{id}/update', [KelasControler::class, 'update']);
     Route::get('/{id}/delete', [KelasControler::class, 'confirm']);
     Route::delete('/{id}/delete', [KelasControler::class, 'delete']);
     Route::get('/{id}/show', [KelasControler::class, 'show']);
 });
+
