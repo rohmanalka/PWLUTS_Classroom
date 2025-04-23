@@ -33,29 +33,55 @@
                     </span>
                     <h4 class="text-section">MENU</h4>
                 </li>
-                <li class="nav-item {{ $activeMenu == 'mahasiswa' ? 'active' : '' }}">
-                    <a href="{{ url('/mahasiswa') }}" class="nav-link">
-                        <i class="fas fa-portrait"></i>
-                        <p>Data Mahasiswa</p>
+
+                {{-- Untuk Mahasiswa --}}
+                @if (session('mahasiswa'))
+                    <li class="nav-item {{ $activeMenu == 'mahasiswa' ? 'active' : '' }}">
+                        <a href="{{ url('/mahasiswa') }}" class="nav-link">
+                            <i class="fas fa-portrait"></i>
+                            <p>Data Mahasiswa</p>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ $activeMenu == 'tugasmhs' ? 'active' : '' }}">
+                        <a href="{{ url('/tugasmhs') }}" class="nav-link">
+                            <i class="fas fa-book"></i>
+                            <p>Tugas Mahasiswa</p>
+                        </a>
+                    </li>
+                @endif
+
+                {{-- Untuk Dosen --}}
+                @if (session('dosen'))
+                    <li class="nav-item {{ $activeMenu == 'dosen' ? 'active' : '' }}">
+                        <a href="{{ url('/dosen') }}" class="nav-link">
+                            <i class="fas fa-portrait"></i>
+                            <p>Data Dosen</p>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ $activeMenu == 'kelas' ? 'active' : '' }}">
+                        <a href="{{ url('/kelas') }}" class="nav-link">
+                            <i class="fas fa-graduation-cap"></i>
+                            <p>Kelas</p>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ $activeMenu == 'tugas' ? 'active' : '' }}">
+                        <a href="{{ url('/tugas') }}" class="nav-link">
+                            <i class="fas fa-book"></i>
+                            <p>Tugas</p>
+                        </a>
+                    </li>
+                @endif
+
+                <!-- Logout Item -->
+                <li class="nav-item">
+                    <a href="{{ route('logout') }}" class="nav-link"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <p>Logout</p>
                     </a>
-                </li>
-                <li class="nav-item {{ $activeMenu == 'kelas' ? 'active' : '' }}">
-                    <a href="{{ url('/kelas') }}" class="nav-link">
-                        <i class="fas fa-graduation-cap"></i>
-                        <p>Kelas</p>
-                    </a>
-                </li>
-                <li class="nav-item {{ $activeMenu == 'tugas' ? 'active' : '' }}">
-                    <a href="{{ url('/tugas') }}" class="nav-link">
-                        <i class="fas fa-book"></i>
-                        <p>Tugas</p>
-                    </a>
-                </li>
-                <li class="nav-item {{ $activeMenu == 'tugasmhs' ? 'active' : '' }}">
-                    <a href="{{ url('/tugasmhs') }}" class="nav-link">
-                        <i class="fas fa-book"></i>
-                        <p>Tugas Mahasiswa</p>
-                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </li>
             </ul>
         </div>
