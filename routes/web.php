@@ -7,6 +7,7 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\TugasController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\TugasmhsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,8 +66,14 @@ Route::middleware(['auth:dosen'])->prefix('tugas')->group(function () {
     Route::get('/', [TugasController::class, 'index']);
     Route::post('/list', [TugasController::class, 'list']);
     Route::get('/create', [TugasController::class, 'create']);
-    Route::post('/ajax', [TugasController::class, 'store']);  
+    Route::post('/ajax', [TugasController::class, 'store']);
     Route::get('/{id}/edit', [TugasController::class, 'edit']);
     Route::put('/{id}/update', [TugasController::class, 'update']);
 });
 
+Route::middleware(['auth:mahasiswa'])->prefix('tugasmhs')->group(function () {
+    Route::get('/', [TugasmhsController::class, 'index']);
+    Route::post('/list', [TugasmhsController::class, 'list']);
+    Route::get('/upload/{id}', [TugasmhsController::class, 'uploadForm']);
+    Route::post('/upload', [TugasmhsController::class, 'upload']);
+});

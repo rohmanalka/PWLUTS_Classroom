@@ -14,21 +14,13 @@ class TugasMahasiswaModel extends Model
     protected $fillable = [
         'id_tugas',
         'id_mahasiswa',
+        'lampiran',
         'status'
     ];
 
     const STATUS_BELUM = 'belum_dikumpulkan';
     const STATUS_SUDAH = 'sudah_dikumpulkan';
     const STATUS_TELAT = 'telat';
-
-    public static function getStatusOptions()
-    {
-        return [
-            self::STATUS_BELUM => 'Belum Dikumpulkan',
-            self::STATUS_SUDAH => 'Sudah Dikumpulkan',
-            self::STATUS_TELAT => 'Telat',
-        ];
-    }
 
     public function mahasiswa()
     {
