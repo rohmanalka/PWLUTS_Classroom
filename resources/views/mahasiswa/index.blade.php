@@ -39,13 +39,14 @@
 
 @push('js')
     <script>
+        var dataMahasiswa;
         function modalAction(url = '') {
             $('#myModal').load(url, function() {
                 $('#myModal').modal('show');
             });
         }
         $(document).ready(function() {
-            var dataMahasiswa = $('#table_mahasiswa').DataTable({
+            dataMahasiswa = $('#table_mahasiswa').DataTable({
                 // serverSide: true, jika ingin menggunakan server side processing
                 serverSide: true,
                 ajax: {

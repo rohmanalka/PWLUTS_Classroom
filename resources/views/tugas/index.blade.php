@@ -58,13 +58,14 @@
 
 @push('js')
     <script>
+        var dataTugas;
         function modalAction(url = '') {
             $('#myModal').load(url, function() {
                 $('#myModal').modal('show');
             });
         }
         $(document).ready(function() {
-            var dataTugas = $('#table_tugas').DataTable({
+            dataTugas = $('#table_tugas').DataTable({
                 // serverSide: true, jika ingin menggunakan server side processing
                 serverSide: true,
                 ajax: {

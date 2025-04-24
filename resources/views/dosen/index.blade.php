@@ -39,13 +39,14 @@
 
 @push('js')
     <script>
+        var dataDosen;
         function modalAction(url = '') {
             $('#myModal').load(url, function() {
                 $('#myModal').modal('show');
             });
         }
         $(document).ready(function() {
-            var dataDosen = $('#table_dosen').DataTable({
+            dataDosen = $('#table_dosen').DataTable({
                 // serverSide: true, jika ingin menggunakan server side processing
                 serverSide: true,
                 ajax: {

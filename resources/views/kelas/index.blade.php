@@ -40,6 +40,7 @@
 
 @push('js')
     <script>
+        var dataKelas;
         function modalAction(url = '') {
             $('#myModal').load(url, function() {
                 $('#myModal').modal('show');
@@ -62,7 +63,7 @@
             });
         });
         $(document).ready(function() {
-            var dataKelas = $('#table_kelas').DataTable({
+             dataKelas = $('#table_kelas').DataTable({
                 // serverSide: true, jika ingin menggunakan server side processing
                 serverSide: true,
                 ajax: {
