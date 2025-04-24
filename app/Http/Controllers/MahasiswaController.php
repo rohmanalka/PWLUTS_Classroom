@@ -40,12 +40,15 @@ class MahasiswaController extends Controller
             // menambahkan kolom index / no urut (default nama kolom: DT_RowIndex)
             ->addIndexColumn()
             ->addColumn('aksi', function ($mahasiswa) { // menambahkan kolom aksi
-                $btn = '<button onclick="modalAction(\'' . url('/mahasiswa/' . $mahasiswa->id_mahasiswa .
-                    '/show') . '\')" class="btn btn-info btn-sm">Detail</button> ';
-                $btn .= '<button onclick="modalAction(\'' . url('/mahasiswa/' . $mahasiswa->id_mahasiswa .
-                    '/edit') . '\')" class="btn btn-warning btn-sm">Edit</button> ';
-                $btn .= '<button onclick="modalAction(\'' . url('/mahasiswa/' . $mahasiswa->id_mahasiswa .
-                    '/delete') . '\')" class="btn btn-danger btn-sm">Hapus</button> ';
+                $btn = '<button onclick="modalAction(\'' . url('/mahasiswa/' . $mahasiswa->id_mahasiswa . '/show')
+                    . '\')" class="btn btn-info btn-sm">';
+                $btn .= '<i class="fas fa-info"></i></button> ';
+                $btn  .= '<button onclick="modalAction(\'' . url('/mahasiswa/' . $mahasiswa->id_mahasiswa . '/edit')
+                    . '\')" class="btn btn-warning btn-sm" title="Edit">';
+                $btn .= '<i class="fas fa-edit"></i></button> ';
+                $btn .= '<button onclick="modalAction(\'' . url('/mahasiswa/' . $mahasiswa->id_mahasiswa . '/delete')
+                    . '\')" class="btn btn-danger btn-sm" title="Hapus">';
+                $btn .= '<i class="fas fa-trash-alt"></i></button>';
                 return $btn;
             })
             ->rawColumns(['aksi']) // memberitahu bahwa kolom aksi adalah html
@@ -116,7 +119,7 @@ class MahasiswaController extends Controller
             $check = MahasiswaModel::find($id);
             if ($check) {
                 $data = $request->all();
-                $data['username'] = $data['nim']; 
+                $data['username'] = $data['nim'];
 
                 $check->update($data);
                 return response()->json([

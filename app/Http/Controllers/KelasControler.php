@@ -53,12 +53,15 @@ class KelasControler extends Controller
             })
 
             ->addColumn('aksi', function ($kelas) { // menambahkan kolom aksi
-                $btn = '<button onclick="modalAction(\'' . url('/kelas/' . $kelas->id_kelas .
-                    '/show') . '\')" class="btn btn-info btn-sm">Detail</button> ';
-                $btn .= '<button onclick="modalAction(\'' . url('/kelas/' . $kelas->id_kelas .
-                    '/edit') . '\')" class="btn btn-warning btn-sm">Edit</button> ';
-                $btn .= '<button onclick="modalAction(\'' . url('/kelas/' . $kelas->id_kelas .
-                    '/delete') . '\')" class="btn btn-danger btn-sm">Hapus</button> ';
+                $btn = '<button onclick="modalAction(\'' . url('/kelas/' . $kelas->id_kelas . '/show')
+                    . '\')" class="btn btn-info btn-sm">';
+                $btn .= '<i class="fas fa-info"></i></button> ';
+                $btn  .= '<button onclick="modalAction(\'' . url('/kelas/' . $kelas->id_kelas . '/edit')
+                    . '\')" class="btn btn-warning btn-sm" title="Edit">';
+                $btn .= '<i class="fas fa-edit"></i></button> ';
+                $btn .= '<button onclick="modalAction(\'' . url('/kelas/' . $kelas->id_kelas . '/delete')
+                    . '\')" class="btn btn-danger btn-sm" title="Hapus">';
+                $btn .= '<i class="fas fa-trash-alt"></i></button>';
                 return $btn;
             })
             ->rawColumns(['aksi', 'jumlah_mahasiswa']) // memberitahu bahwa kolom aksi adalah html
