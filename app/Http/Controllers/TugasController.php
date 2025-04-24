@@ -40,11 +40,13 @@ class TugasController extends Controller
         return DataTables::of($tugas)
             // menambahkan kolom index / no urut (default nama kolom: DT_RowIndex)
             ->addIndexColumn()
-            ->addColumn('aksi', function ($tugas) { // menambahkan kolom aksi
-                $btn = '<button onclick="modalAction(\'' . url('/tugas/' . $tugas->id_tugas .
-                    '/edit') . '\')" class="btn btn-warning btn-sm">E</button> ';
-                $btn .= '<button onclick="modalAction(\'' . url('/tugas/' . $tugas->id_tugas .
-                    '/delete') . '\')" class="btn btn-danger btn-sm">H</button> ';
+            ->addColumn('aksi', function ($tugas) {
+                $btn  = '<button onclick="modalAction(\'' . url('/tugas/' . $tugas->id_tugas . '/edit')
+                    . '\')" class="btn btn-warning btn-sm" title="Edit">';
+                $btn .= '<i class="fas fa-edit"></i></button> ';
+                $btn .= '<button onclick="modalAction(\'' . url('/tugas/' . $tugas->id_tugas . '/delete')
+                    . '\')" class="btn btn-danger btn-sm" title="Hapus">';
+                $btn .= '<i class="fas fa-trash-alt"></i></button>';
                 return $btn;
             })
             ->rawColumns(['aksi']) // memberitahu bahwa kolom aksi adalah html
