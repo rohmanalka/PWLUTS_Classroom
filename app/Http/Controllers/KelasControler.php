@@ -183,22 +183,25 @@ class KelasControler extends Controller
         if ($request->ajax() || $request->wantsJson()) {
             $kelas = KelasModel::find($id);
 
-            if ($kelas) {
-                // Hapus relasi kelas dengan mahasiswa terlebih dahulu (pivot tabel kelas_mahasiswa)
-                \App\Models\KelasMahasiswaModel::where('id_kelas', $id)->delete();
-                $kelas->delete();
-
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Data kelas berhasil dihapus'
-                ]);
-            } else {
+            if (!$kelas) {
                 return response()->json([
                     'status' => false,
                     'message' => 'Data kelas tidak ditemukan'
                 ]);
             }
+
+            // Hapus relasi di tabel kelas_mahasiswa
+            \App\Models\KelasMahasiswaModel::where('id_kelas', $id)->delete();
+
+            // Hapus kelas
+            $kelas->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Data kelas berhasil dihapus'
+            ]);
         }
+
         return redirect('/');
     }
 
