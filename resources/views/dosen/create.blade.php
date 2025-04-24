@@ -9,9 +9,9 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>NIM</label>
-                    <input value="" type="text" name="nim" id="nim" class="form-control" required>
-                    <small id="error-nim" class="error-text form-text text-danger"></small>
+                    <label>NIP</label>
+                    <input value="" type="text" name="nip" id="nip" class="form-control" required>
+                    <small id="error-nip" class="error-text form-text text-danger"></small>
                 </div>
                 <div class="form-group">
                     <label>Nama Dosen</label>
@@ -47,7 +47,7 @@
                 },
                 nama: {
                     required: true,
-                    minlength: 10,
+                    minlength: 5,
                     maxlength: 100
                 },
                 username: {
