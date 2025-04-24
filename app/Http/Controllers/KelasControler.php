@@ -83,8 +83,11 @@ class KelasControler extends Controller
             'mahasiswa_id' => 'array|nullable',
         ]);
 
+        // ambil dosen yang sedang login
+        $dosen = auth('dosen')->user(); // guard dosen
+
         $kelas = KelasModel::create([
-            'id_dosen' => auth()->user()->id ?? 1,
+            'id_dosen' => $dosen->id_dosen,
             'nama_kelas' => $request->nama_kelas,
         ]);
 
